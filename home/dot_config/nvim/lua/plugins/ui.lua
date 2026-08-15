@@ -17,4 +17,11 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {},
   },
+  -- Subtle vertical indentation guides.
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+  },
 }

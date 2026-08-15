@@ -4,9 +4,11 @@ return {
     event = "InsertEnter",
     opts = {},
   },
+  -- Add/change/delete surrounding pairs: ys / cs / ds  (e.g. cs"'  ds(  ysiw))
   {
-    "numToStr/Comment.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
     opts = {},
   },
   {
@@ -14,4 +16,5 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  -- Commenting (gc / gcc) is built into Neovim 0.10+, so no plugin needed.
 }

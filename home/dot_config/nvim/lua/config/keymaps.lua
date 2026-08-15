@@ -12,4 +12,4 @@ map("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>")
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>")
 
-map("n", "<leader>e", vim.diagnostic.open_float)
+map("n", "<leader>d", vim.diagnostic.open_float)   -- <leader>e is the file explorer
