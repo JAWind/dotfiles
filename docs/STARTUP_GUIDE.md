@@ -76,6 +76,8 @@ The core environment is ready. Add these when you need them:
   re-run `chezmoi apply`. See [SECRETS.md → Commit signing](SECRETS.md#commit-signing-ssh).
 - **API tokens** — stored in the macOS Keychain, never the repo.
   See [SECRETS.md → API tokens](SECRETS.md#api-tokens--environment-values).
+- **Python** — managed by `uv`: `uv python install 3.13` (interpreters),
+  `uv init` / `uv add <pkg>` / `uv run <cmd>` (projects & venvs).
 
 ## Non-admin / managed machines
 
@@ -103,7 +105,7 @@ the core tools via MDM); everything else here is user-level.
 ## Quick check
 
 ```sh
-which starship zoxide mise fzf   # all resolve
+which starship zoxide uv fzf     # all resolve
 git config user.email            # shows your email
 chezmoi diff                     # no unexpected changes
 ```

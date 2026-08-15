@@ -14,7 +14,7 @@ repo; identity is prompted for at setup, so it is safe to share.
 - **Terminal** — tmux (see [docs/TMUX.md](docs/TMUX.md)), iTerm2, a Nerd Font.
 - **Git** — templated identity, a global ignore file, and optional SSH commit
   signing that turns on automatically once a signing key is present.
-- **Tooling** — mise (runtimes), gh, ripgrep, fd, bat, eza, and more
+- **Tooling** — uv (Python), gh, ripgrep, fd, bat, eza, and more
   (see `homebrew/Brewfile`).
 - **Secrets** — none in the repo; read from the macOS Keychain at runtime
   (see [docs/SECRETS.md](docs/SECRETS.md)).
@@ -85,7 +85,6 @@ home/                        -> $HOME
     zsh/dot_zshrc            -> ~/.config/zsh/.zshrc
     zsh/private_secrets.zsh  -> ~/.config/zsh/secrets.zsh  (Keychain loader, 0600)
     git/ignore              -> ~/.config/git/ignore
-    mise/config.toml        -> ~/.config/mise/config.toml
     nvim/                   -> ~/.config/nvim
     tmux/tmux.conf          -> ~/.config/tmux/tmux.conf
     starship.toml           -> ~/.config/starship.toml

@@ -8,20 +8,38 @@ return {
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      local servers = { "lua_ls", "pyright", "bashls", "jsonls", "yamlls" }
+      -- Node-free, Python-focused servers:
+      --   lua_ls  Lua (prebuilt binary)
+      --   pylsp   Python intelligence: completion / hover / go-to-def (pure Python)
+      --   ruff    Python lint / format / code actions (Rust binary)
+      local servers = { "lua_ls", "pylsp", "ruff" }
       require("mason-lspconfig").setup({ ensure_installed = servers })
 
-      -- Give every server the completion capabilities from nvim-cmp.
-      -- vim.lsp.config exists on Neovim 0.11+ (mason-lspconfig v2 auto-enables).
       if vim.lsp.config then
         vim.lsp.config("*", {
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
+        -- Let Ruff own linting; disable pylsp's overlapping linters.
+        vim.lsp.config("pylsp", {
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = { enabled = false },
+                pyflakes = { enabled = false },
+                mccabe = { enabled = false },
+              },
+            },
+          },
+        })
       end
 
-      -- Buffer-local keymaps once a server attaches.
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          -- Let pylsp provide hover; Ruff handles lint/format/code-actions.
+          if client and client.name == "ruff" then
+            client.server_capabilities.hoverProvider = false
+          end
           local function map(keys, fn)
             vim.keymap.set("n", keys, fn, { buffer = args.buf })
           end

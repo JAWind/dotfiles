@@ -12,7 +12,6 @@ brew "chezmoi"                 # Manage dotfiles across machines
 brew "neovim"                  # Hyperextensible Vim-based editor
 brew "tmux"                    # Terminal multiplexer
 brew "starship"                # Cross-shell prompt
-brew "mise"                    # Polyglot runtime version manager
 
 ## Modern CLI replacements ##########################################
 brew "bat"                     # cat(1) clone with syntax highlighting
@@ -30,7 +29,7 @@ brew "zsh-syntax-highlighting" # Fish-like syntax highlighting
 
 ## Dev workflow #####################################################
 brew "awscli"                  # Amazon AWS command-line interface
-brew "python@3.14"             # Python interpreter
+brew "uv"                      # Fast Python package & version manager
 
 ## Fonts (install to ~/Library/Fonts — no admin) ####################
 cask "font-sf-mono-nerd-font-ligaturized"

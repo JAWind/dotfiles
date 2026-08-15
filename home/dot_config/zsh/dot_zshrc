@@ -25,7 +25,11 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # case-insensitive
 # ── Prompt & navigation tools ───────────────────────────────────────
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-eval "$(mise activate zsh)"
+# uv (Python) shell completions
+if command -v uv >/dev/null 2>&1; then
+  eval "$(uv generate-shell-completion zsh 2>/dev/null)"
+  eval "$(uvx --generate-shell-completion zsh 2>/dev/null)"
+fi
 
 # fzf — modern integration (key bindings + fuzzy completion)
 if command -v fzf >/dev/null 2>&1; then
