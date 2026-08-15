@@ -36,12 +36,11 @@ managed files into `$HOME`. Preview changes anytime with `chezmoi diff`.
 ## 4. Install the core tools
 
 The core Brewfile is CLI-only and needs no admin (once Homebrew is present).
-It uses two third-party taps (Terraform, tflint); trust them once first, or
-`brew bundle` will refuse to load them:
+It uses HashiCorp's third-party tap (Terraform); trust it once first, or
+`brew bundle` will refuse to load it:
 
 ```sh
 brew trust hashicorp/tap
-brew trust terraform-linters/tap
 brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
 ```
 

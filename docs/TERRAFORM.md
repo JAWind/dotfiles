@@ -6,21 +6,20 @@ authentication reuses the `awscli` already in this setup.
 
 ## Install
 
-Installed by the core Brewfile from two taps:
+Installed by the core Brewfile: Terraform from HashiCorp's tap, tflint from
+Homebrew core:
 
 ```ruby
 tap "hashicorp/tap"
-tap "terraform-linters/tap"
-brew "hashicorp/tap/terraform"        # Terraform CLI
-brew "terraform-linters/tap/tflint"   # linter
+brew "hashicorp/tap/terraform"   # Terraform CLI
+brew "tflint"                    # linter (homebrew core)
 ```
 
 Homebrew refuses to load formulae from an untrusted third-party tap, so trust
-them once before the first `brew bundle`:
+HashiCorp's once before the first `brew bundle`:
 
 ```sh
 brew trust hashicorp/tap
-brew trust terraform-linters/tap
 ```
 
 Then `brew bundle` installs both. Verify:
