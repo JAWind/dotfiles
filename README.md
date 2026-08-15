@@ -22,6 +22,8 @@ This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
   signing that activates once a signing key exists. → [docs/GIT.md](docs/GIT.md)
 - **Secrets** — none in the repo; read from the macOS Keychain at runtime.
   → [docs/SECRETS.md](docs/SECRETS.md)
+- **Theme** — Catppuccin Mocha across Starship, Neovim, bat, eza, and fzf.
+  → [docs/THEMING.md](docs/THEMING.md)
 
 ## Documentation
 
@@ -35,6 +37,7 @@ This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
 | [TERRAFORM.md](docs/TERRAFORM.md) | Terraform CLI, tflint, editor support, state & creds |
 | [GIT.md](docs/GIT.md) | git config, global ignore, signing, machine-local overrides |
 | [SECRETS.md](docs/SECRETS.md) | Keychain secrets, SSH keys, and commit signing |
+| [THEMING.md](docs/THEMING.md) | Catppuccin Mocha across the toolchain |
 
 ## Quick start
 
