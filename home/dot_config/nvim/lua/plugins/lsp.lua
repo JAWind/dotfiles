@@ -12,7 +12,7 @@ return {
       --   lua_ls  Lua (prebuilt binary)
       --   pylsp   Python intelligence: completion / hover / go-to-def (pure Python)
       --   ruff    Python lint / format / code actions (Rust binary)
-      local servers = { "lua_ls", "pylsp", "ruff" }
+      local servers = { "lua_ls", "pylsp", "ruff", "terraformls" }
       require("mason-lspconfig").setup({ ensure_installed = servers })
 
       if vim.lsp.config then

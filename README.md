@@ -16,6 +16,8 @@ This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
 - **Terminal** — tmux, plus iTerm2 and a Nerd Font. → [docs/TMUX.md](docs/TMUX.md)
 - **Python** — uv for interpreters, virtualenvs, packages, and tools; Ruff +
   pylsp in the editor. → [docs/PYTHON.md](docs/PYTHON.md)
+- **Infrastructure** — Terraform and tflint, with terraform-ls in the editor.
+  → [docs/TERRAFORM.md](docs/TERRAFORM.md)
 - **Git** — templated identity, a global ignore file, and optional SSH commit
   signing that activates once a signing key exists. → [docs/GIT.md](docs/GIT.md)
 - **Secrets** — none in the repo; read from the macOS Keychain at runtime.
@@ -30,6 +32,7 @@ This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
 | [NEOVIM.md](docs/NEOVIM.md) | Editor: layout, options, keybindings, plugins, LSP |
 | [TMUX.md](docs/TMUX.md) | Terminal multiplexer: prefix, keybindings, sessions |
 | [PYTHON.md](docs/PYTHON.md) | uv workflow (versions, projects, tools) + Ruff/pylsp |
+| [TERRAFORM.md](docs/TERRAFORM.md) | Terraform CLI, tflint, editor support, state & creds |
 | [GIT.md](docs/GIT.md) | git config, global ignore, signing, machine-local overrides |
 | [SECRETS.md](docs/SECRETS.md) | Keychain secrets, SSH keys, and commit signing |
 

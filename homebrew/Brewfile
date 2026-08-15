@@ -5,6 +5,9 @@
 #
 # GUI apps live in Brewfile.casks (some need admin/MDM) — see that file.
 
+## Taps ############################################################
+tap "hashicorp/tap"
+
 ## Core dev tools ####################################################
 brew "git"                     # Distributed revision control system
 brew "gh"                      # GitHub command-line tool
@@ -30,6 +33,10 @@ brew "zsh-syntax-highlighting" # Fish-like syntax highlighting
 ## Dev workflow #####################################################
 brew "awscli"                  # Amazon AWS command-line interface
 brew "uv"                      # Fast Python package & version manager
+
+## Infrastructure ##################################################
+brew "hashicorp/tap/terraform" # Infrastructure as code
+brew "tflint"                  # Terraform linter
 
 ## Fonts (install to ~/Library/Fonts — no admin) ####################
 cask "font-sf-mono-nerd-font-ligaturized"

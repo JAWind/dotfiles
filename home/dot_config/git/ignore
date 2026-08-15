@@ -25,6 +25,14 @@ node_modules/
 .env
 .env.local
 
+# Terraform (never commit state/caches; keep .terraform.lock.hcl tracked)
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.tfstate.lock.info
+crash.log
+crash.*.log
+
 # Build output
 dist/
 build/

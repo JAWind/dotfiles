@@ -133,29 +133,33 @@ Commenting uses Neovim's **built-in** `gc` (0.10+), so there is no comment plugi
 
 ## Language servers
 
-Node-free and Python-focused. Installed automatically via Mason on first launch:
+Node-free. Installed automatically via Mason on first launch:
 
 | Server   | Purpose                                                  |
 |----------|----------------------------------------------------------|
 | `lua_ls` | Lua language server (prebuilt binary)                    |
 | `pylsp`  | Python intelligence — completion, hover, go-to-definition |
 | `ruff`   | Python linting, formatting, and code actions (Ruff)      |
+| `terraformls` | Terraform / HCL: completion, validation, formatting (Go binary) |
 
 Ruff handles linting/formatting while pylsp provides code intelligence; pylsp's
 own linters are disabled so they don't overlap with Ruff, and Ruff's hover is
 disabled so pylsp owns hover. `pylsp` installs via pip (Mason uses a `python3`
-from the Command Line Tools or uv); `lua_ls` and `ruff` are prebuilt binaries —
-no Node required.
+from the Command Line Tools or uv); `lua_ls`, `ruff`, and `terraformls` are prebuilt Go/Rust
+binaries — no Node required.
 
 JSON, YAML, and Bash keep Treesitter highlighting but have **no LSP by default**
 (their servers are Node-based). To enable them, install Node and add `jsonls`,
 `yamlls`, and/or `bashls` to the `servers` list in `lua/plugins/lsp.lua`.
 
+Terraform linting (`tflint`) runs from the command line — see
+[TERRAFORM.md](TERRAFORM.md).
+
 Add or change servers by editing that list, or browse and install with `:Mason`.
 
 ## Treesitter languages
 
-Parsers installed for: `lua`, `python`, `bash`, `json`, `yaml`, `toml`, `markdown`.
+Parsers installed for: `lua`, `python`, `bash`, `json`, `yaml`, `toml`, `hcl`, `terraform`, `markdown`.
 Add more in `lua/plugins/treesitter.lua` (`ensure_installed`) or run
 `:TSInstall <language>`.
 
