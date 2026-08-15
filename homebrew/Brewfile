@@ -6,7 +6,11 @@
 # GUI apps live in Brewfile.casks (some need admin/MDM) — see that file.
 
 ## Taps ############################################################
+# Third-party taps must be trusted once before `brew bundle` (Homebrew
+# security gate):
+#   brew trust hashicorp/tap && brew trust terraform-linters/tap
 tap "hashicorp/tap"
+tap "terraform-linters/tap"
 
 ## Core dev tools ####################################################
 brew "git"                     # Distributed revision control system
@@ -36,7 +40,7 @@ brew "uv"                      # Fast Python package & version manager
 
 ## Infrastructure ##################################################
 brew "hashicorp/tap/terraform" # Infrastructure as code
-brew "tflint"                  # Terraform linter
+brew "terraform-linters/tap/tflint" # Terraform linter
 
 ## Fonts (install to ~/Library/Fonts — no admin) ####################
 cask "font-sf-mono-nerd-font-ligaturized"
