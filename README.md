@@ -21,6 +21,8 @@ repo; identity is prompted for at setup, so it is safe to share.
 
 ## Set up a new machine
 
+> For a guided quick-start, see **[docs/STARTUP_GUIDE.md](docs/STARTUP_GUIDE.md)**. For how secrets and commit signing work, see **[docs/SECRETS.md](docs/SECRETS.md)**.
+
 Prerequisites: macOS with an internet connection. Everything else is installed
 by the steps below.
 
