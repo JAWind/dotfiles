@@ -53,4 +53,7 @@ alias grep="rg"
 
 # ── zsh plugins (syntax-highlighting MUST be sourced last) ──────────
 source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" 2>/dev/null
+# Catppuccin Mocha highlight styles (set before syntax-highlighting loads)
+[[ -f "$ZDOTDIR/catppuccin_mocha-zsh-syntax-highlighting.zsh" ]] && \
+  source "$ZDOTDIR/catppuccin_mocha-zsh-syntax-highlighting.zsh"
 source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>/dev/null
