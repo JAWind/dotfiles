@@ -1,0 +1,11 @@
+# ~/.config/mise/config.toml — global runtime versions & settings
+# Docs: https://mise.jdx.dev/configuration.html
+
+[tools]
+# Pin global default runtimes here, e.g.:
+# node = "lts"
+# python = "3.14"
+
+[settings]
+# Honour .nvmrc / .python-version style files from other tools.
+idiomatic_version_file_enable_tools = ["node", "python"]
