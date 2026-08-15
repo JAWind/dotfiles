@@ -1,0 +1,25 @@
+# ~/.local/share/chezmoi/homebrew/Brewfile.casks
+# GUI applications, kept separate from the core Brewfile: installing apps into
+# /Applications generally needs administrator rights, and some (Docker Desktop)
+# require admin regardless.
+#
+# Apply with:
+#   brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
+#
+# No admin? Install apps into your home folder instead:
+#   HOMEBREW_CASK_OPTS="--appdir=~/Applications" \
+#     brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
+# (Docker Desktop still needs admin — use MDM or a rootless alternative.)
+
+## GUI apps #########################################################
+cask "iterm2"                  # Terminal emulator
+cask "visual-studio-code"      # Code editor
+cask "google-chrome"           # Web browser
+cask "raycast"                 # Launcher / productivity
+cask "devutils"                # Developer toolbox
+cask "docker-desktop"          # Containers (requires admin)
+cask "claude-code"             # Terminal-based AI coding assistant
+
+## VS Code extensions (need VS Code above; no admin) ################
+vscode "catppuccin.catppuccin-vsc"
+vscode "catppuccin.catppuccin-vsc-icons"

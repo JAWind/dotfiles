@@ -1,7 +1,9 @@
 # ~/.local/share/chezmoi/homebrew/Brewfile
-# Install / sync everything with:
-#   brew bundle --file="$(chezmoi source-path)/../homebrew/Brewfile"
-# Or from the source dir:  brew bundle
+# Core formulae — the terminal + editor environment. Installs WITHOUT admin
+# once Homebrew itself is present. Apply with:
+#   brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
+#
+# GUI apps live in Brewfile.casks (some need admin/MDM) — see that file.
 
 ## Core dev tools ####################################################
 brew "git"                     # Distributed revision control system
@@ -27,23 +29,8 @@ brew "zsh-autosuggestions"     # Fish-like autosuggestions
 brew "zsh-syntax-highlighting" # Fish-like syntax highlighting
 
 ## Dev workflow #####################################################
-brew "direnv"                  # Per-directory environment loader
 brew "awscli"                  # Amazon AWS command-line interface
 brew "python@3.14"             # Python interpreter
 
-## GUI apps (casks) #################################################
-cask "iterm2"                  # Terminal emulator
-cask "visual-studio-code"      # Code editor
-cask "google-chrome"           # Web browser
-cask "raycast"                 # Launcher / productivity
-cask "devutils"                # Developer toolbox
-cask "docker-desktop"          # Containers
-cask "discord"                 # Chat
-cask "claude-code"             # Terminal-based AI coding assistant
-
-## Fonts ############################################################
+## Fonts (install to ~/Library/Fonts — no admin) ####################
 cask "font-sf-mono-nerd-font-ligaturized"
-
-## VS Code extensions ###############################################
-vscode "catppuccin.catppuccin-vsc"
-vscode "catppuccin.catppuccin-vsc-icons"

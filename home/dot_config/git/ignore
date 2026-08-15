@@ -22,7 +22,6 @@ venv/
 node_modules/
 
 # Tooling
-.direnv/
 .env
 .env.local
 

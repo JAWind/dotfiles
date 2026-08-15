@@ -14,7 +14,7 @@ repo; identity is prompted for at setup, so it is safe to share.
 - **Terminal** — tmux, iTerm2, a Nerd Font.
 - **Git** — templated identity, a global ignore file, and optional SSH commit
   signing that turns on automatically once a signing key is present.
-- **Tooling** — mise (runtimes), gh, ripgrep, fd, bat, eza, direnv, and more
+- **Tooling** — mise (runtimes), gh, ripgrep, fd, bat, eza, and more
   (see `homebrew/Brewfile`).
 - **Secrets** — none in the repo; read from the macOS Keychain at runtime
   (see [docs/SECRETS.md](docs/SECRETS.md)).
@@ -48,11 +48,21 @@ by the steps below.
    > use that URL above, or copy `~/.local/share/chezmoi` onto the new machine
    > and run `chezmoi apply` there.
 
-3. **Install packages** from the Brewfile:
+3. **Install the core tools** — the terminal + editor environment; no admin
+   needed once Homebrew is present:
 
    ```sh
    brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
    ```
+
+   GUI apps are optional and kept separate (some need admin):
+
+   ```sh
+   brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
+   ```
+
+   > No admin rights? See the guide's
+   > [Non-admin / managed machines](docs/STARTUP_GUIDE.md#non-admin--managed-machines).
 
 4. **Restart your shell** (or open a new terminal) so zsh, Starship, and the
    shell plugins load. Open `nvim` once to let it install its plugins.
@@ -80,7 +90,9 @@ home/                        -> $HOME
     tmux/tmux.conf          -> ~/.config/tmux/tmux.conf
     starship.toml           -> ~/.config/starship.toml
   private_dot_ssh/          -> ~/.ssh               (config only; keys ignored)
-homebrew/Brewfile              package manifest
+homebrew/Brewfile              core formulae (no admin)
+homebrew/Brewfile.casks        GUI apps + VS Code extensions (may need admin)
+docs/STARTUP_GUIDE.md          quick-start setup guide
 docs/SECRETS.md                secrets & commit-signing runbook
 ```
 
@@ -99,10 +111,11 @@ chezmoi re-add               # pull local edits back into the source
 chezmoi cd                   # open a shell in the source repo
 ```
 
-Sync packages after editing the Brewfile:
+Sync packages after editing a Brewfile (core, then optionally the GUI apps):
 
 ```sh
 brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
+brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
 ```
 
 After changing configs, commit them from the source repo:

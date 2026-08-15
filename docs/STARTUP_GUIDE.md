@@ -33,11 +33,21 @@ chezmoi init --apply <your-repo-url>     # omit the URL if the source is already
 You'll be prompted for your name and email (used for git). chezmoi writes all
 managed files into `$HOME`. Preview changes anytime with `chezmoi diff`.
 
-## 4. Install packages
+## 4. Install the core tools
+
+The core Brewfile is CLI-only and needs no admin (once Homebrew is present):
 
 ```sh
 brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
 ```
+
+GUI apps are optional and kept separate because they may need admin:
+
+```sh
+brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
+```
+
+No administrator rights? See [Non-admin / managed machines](#non-admin--managed-machines).
 
 ## 5. Start the configured shell
 
@@ -66,6 +76,29 @@ The core environment is ready. Add these when you need them:
   re-run `chezmoi apply`. See [SECRETS.md → Commit signing](SECRETS.md#commit-signing-ssh).
 - **API tokens** — stored in the macOS Keychain, never the repo.
   See [SECRETS.md → API tokens](SECRETS.md#api-tokens--environment-values).
+
+## Non-admin / managed machines
+
+The dotfiles and every CLI tool install **without administrator rights**. Admin
+only enters in two places:
+
+- **Installing Homebrew itself** creates `/opt/homebrew`, which needs `sudo`. If
+  Homebrew is already present (common on IT-managed Macs), skip step 1 — the
+  core Brewfile then installs with no admin at all.
+- **GUI apps** (`Brewfile.casks`) normally install into `/Applications`, which a
+  non-admin user can't write. Install them into your home folder instead:
+
+  ```sh
+  HOMEBREW_CASK_OPTS="--appdir=~/Applications" \
+    brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
+  ```
+
+  Docker Desktop is the exception — it installs a privileged helper and needs
+  admin regardless. Have IT/MDM deploy it, or use a rootless alternative like
+  Colima (`brew install colima`, no admin).
+
+If you have neither admin nor Homebrew, ask IT to install Homebrew (or deploy
+the core tools via MDM); everything else here is user-level.
 
 ## Quick check
 
