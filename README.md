@@ -11,7 +11,7 @@ repo; identity is prompted for at setup, so it is safe to share.
   history + completion, fzf, zoxide, autosuggestions, and syntax highlighting.
 - **Editor** — Neovim (lazy.nvim) with LSP, completion, treesitter, telescope,
   and quality-of-life plugins (see [docs/NEOVIM.md](docs/NEOVIM.md)).
-- **Terminal** — tmux, iTerm2, a Nerd Font.
+- **Terminal** — tmux (see [docs/TMUX.md](docs/TMUX.md)), iTerm2, a Nerd Font.
 - **Git** — templated identity, a global ignore file, and optional SSH commit
   signing that turns on automatically once a signing key is present.
 - **Tooling** — mise (runtimes), gh, ripgrep, fd, bat, eza, and more
@@ -94,6 +94,7 @@ homebrew/Brewfile              core formulae (no admin)
 homebrew/Brewfile.casks        GUI apps + VS Code extensions (may need admin)
 docs/STARTUP_GUIDE.md          quick-start setup guide
 docs/NEOVIM.md                 Neovim setup & keybindings reference
+docs/TMUX.md                   tmux setup & keybindings reference
 docs/SECRETS.md                secrets & commit-signing runbook
 ```
 
