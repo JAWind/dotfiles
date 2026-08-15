@@ -27,3 +27,8 @@ so everything under `home/` maps to `$HOME`.
     chezmoi re-add              # pull local edits back into the source
 
     brew bundle --file=homebrew/Brewfile   # install all packages
+
+## Secrets
+
+No secrets live in this repo. See [docs/SECRETS.md](docs/SECRETS.md)
+for how tokens (Keychain), SSH keys, and GPG signing are provisioned per machine.

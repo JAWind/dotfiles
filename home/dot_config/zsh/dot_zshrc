@@ -42,6 +42,9 @@ alias cat="bat"
 alias find="fd"
 alias grep="rg"
 
+# ── Secrets from Keychain (safe/empty until you add them) ────────────
+[[ -f "$ZDOTDIR/secrets.zsh" ]] && source "$ZDOTDIR/secrets.zsh"
+
 # ── zsh plugins (syntax-highlighting MUST be sourced last) ──────────
 source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" 2>/dev/null
 source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>/dev/null
