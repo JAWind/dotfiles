@@ -1,76 +1,52 @@
 # Dotfiles
 
-A macOS development environment managed with [chezmoi](https://chezmoi.io).
-One `chezmoi init` sets up a new Mac: zsh + Starship, Neovim, tmux, git, and a
-curated set of CLI tools and apps via Homebrew. No secrets are stored in this
-repo; identity is prompted for at setup, so it is safe to share.
+A macOS development environment managed with [chezmoi](https://chezmoi.io):
+zsh + Starship, Neovim, tmux, git, and a curated CLI toolchain via Homebrew —
+Python-focused (uv). No secrets live in the repo and your identity is prompted
+for at setup, so it is safe to share.
+
+This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
 
 ## What's inside
 
-- **Shell** — zsh under `~/.config/zsh` (XDG layout), Starship prompt,
-  history + completion, fzf, zoxide, autosuggestions, and syntax highlighting.
-- **Editor** — Neovim (lazy.nvim) with LSP, completion, treesitter, telescope,
-  and quality-of-life plugins (see [docs/NEOVIM.md](docs/NEOVIM.md)).
-- **Terminal** — tmux (see [docs/TMUX.md](docs/TMUX.md)), iTerm2, a Nerd Font.
+- **Shell** — zsh (XDG layout), Starship prompt, history, completion, fzf,
+  zoxide, autosuggestions, syntax highlighting. → [docs/ZSH.md](docs/ZSH.md)
+- **Editor** — Neovim (lazy.nvim): LSP, completion, treesitter, telescope, and
+  quality-of-life plugins. → [docs/NEOVIM.md](docs/NEOVIM.md)
+- **Terminal** — tmux, plus iTerm2 and a Nerd Font. → [docs/TMUX.md](docs/TMUX.md)
+- **Python** — uv for interpreters, virtualenvs, packages, and tools; Ruff +
+  pylsp in the editor. → [docs/PYTHON.md](docs/PYTHON.md)
 - **Git** — templated identity, a global ignore file, and optional SSH commit
-  signing that turns on automatically once a signing key is present.
-- **Tooling** — uv (Python), gh, ripgrep, fd, bat, eza, and more
-  (see `homebrew/Brewfile`).
-- **Secrets** — none in the repo; read from the macOS Keychain at runtime
-  (see [docs/SECRETS.md](docs/SECRETS.md)).
+  signing that activates once a signing key exists.
+- **Secrets** — none in the repo; read from the macOS Keychain at runtime.
+  → [docs/SECRETS.md](docs/SECRETS.md)
 
-## Set up a new machine
+## Documentation
 
-> For a guided quick-start, see **[docs/STARTUP_GUIDE.md](docs/STARTUP_GUIDE.md)**. For how secrets and commit signing work, see **[docs/SECRETS.md](docs/SECRETS.md)**.
+| Guide | What it covers |
+|-------|----------------|
+| [STARTUP_GUIDE.md](docs/STARTUP_GUIDE.md) | Set up a new Mac, step by step (incl. non-admin machines) |
+| [ZSH.md](docs/ZSH.md) | Shell: prompt, aliases, history, completion, integrations |
+| [NEOVIM.md](docs/NEOVIM.md) | Editor: layout, options, keybindings, plugins, LSP |
+| [TMUX.md](docs/TMUX.md) | Terminal multiplexer: prefix, keybindings, sessions |
+| [PYTHON.md](docs/PYTHON.md) | uv workflow (versions, projects, tools) + Ruff/pylsp |
+| [SECRETS.md](docs/SECRETS.md) | Keychain secrets, SSH keys, and commit signing |
 
-Prerequisites: macOS with an internet connection. Everything else is installed
-by the steps below.
+## Quick start
 
-1. **Install Homebrew**, then add it to your PATH as its output instructs:
+On a new Mac (full walkthrough, including non-admin machines, in
+[docs/STARTUP_GUIDE.md](docs/STARTUP_GUIDE.md)):
 
-   ```sh
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
+```sh
+# 1. Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# 2. chezmoi + dotfiles (prompts for name/email)
+brew install chezmoi && chezmoi init --apply <your-repo-url>
+# 3. core packages  (GUI apps: also run Brewfile.casks)
+brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
+```
 
-2. **Install chezmoi and apply the dotfiles.** You will be prompted for your
-   name and email (used for git):
-
-   ```sh
-   brew install chezmoi
-   chezmoi init --apply <your-repo-url>
-   ```
-
-   This clones the source to `~/.local/share/chezmoi`, writes
-   `~/.config/chezmoi/chezmoi.toml`, and applies every config into place.
-
-   > **No git remote yet?** If the source only exists locally, either push it
-   > to a private remote first (see [Backups & remote](#backups--remote)) and
-   > use that URL above, or copy `~/.local/share/chezmoi` onto the new machine
-   > and run `chezmoi apply` there.
-
-3. **Install the core tools** — the terminal + editor environment; no admin
-   needed once Homebrew is present:
-
-   ```sh
-   brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
-   ```
-
-   GUI apps are optional and kept separate (some need admin):
-
-   ```sh
-   brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
-   ```
-
-   > No admin rights? See the guide's
-   > [Non-admin / managed machines](docs/STARTUP_GUIDE.md#non-admin--managed-machines).
-
-4. **Restart your shell** (or open a new terminal) so zsh, Starship, and the
-   shell plugins load. Open `nvim` once to let it install its plugins.
-
-5. **Add machine-specific secrets when you need them** — API tokens into the
-   Keychain, SSH keys, and commit signing. See
-   [docs/SECRETS.md](docs/SECRETS.md). None of this is required for the
-   environment to work.
+Then restart your shell (`exec zsh`) and open `nvim` once to let plugins install.
 
 ## Layout
 
@@ -91,10 +67,7 @@ home/                        -> $HOME
   private_dot_ssh/          -> ~/.ssh               (config only; keys ignored)
 homebrew/Brewfile              core formulae (no admin)
 homebrew/Brewfile.casks        GUI apps + VS Code extensions (may need admin)
-docs/STARTUP_GUIDE.md          quick-start setup guide
-docs/NEOVIM.md                 Neovim setup & keybindings reference
-docs/TMUX.md                   tmux setup & keybindings reference
-docs/SECRETS.md                secrets & commit-signing runbook
+docs/                          per-topic guides (see Documentation above)
 ```
 
 Filenames use chezmoi
@@ -102,37 +75,18 @@ Filenames use chezmoi
 `dot_` becomes a leading `.`, `private_` applies mode `0600`, and `.tmpl` marks
 a templated file.
 
-## Day-to-day
+## Managing the repo
 
 ```sh
 chezmoi diff                 # preview pending changes before applying
 chezmoi apply -v             # apply the source to $HOME
 chezmoi edit ~/.zshrc        # edit a managed file through the source
-chezmoi re-add               # pull local edits back into the source
-chezmoi cd                   # open a shell in the source repo
+chezmoi cd                   # open a shell in the source repo (a git repo)
 ```
 
-Sync packages after editing a Brewfile (core, then optionally the GUI apps):
-
-```sh
-brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
-brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile.casks"
-```
-
-After changing configs, commit them from the source repo:
-
-```sh
-chezmoi cd
-git add -A && git commit -m "describe your change"
-```
-
-## Secrets & commit signing
-
-No secret material lives in this repo. API tokens are read from the macOS
-Keychain at shell startup, SSH keys are created per machine, and commit signing
-uses your SSH key — activating automatically once that key exists and you
-re-run `chezmoi apply`. Full details and exact commands are in
-[docs/SECRETS.md](docs/SECRETS.md).
+Commit changes from the source repo (`chezmoi cd`, then `git add -A && git commit`).
+After editing a Brewfile, re-sync packages with
+`brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"`.
 
 ## Backups & remote
 
@@ -146,4 +100,4 @@ git remote add origin <your-private-repo-url>
 git push -u origin main
 ```
 
-Once pushed, step 2 above works with that URL on any new Mac.
+Once pushed, the quick-start `chezmoi init --apply <url>` works on any new Mac.
