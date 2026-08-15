@@ -11,7 +11,7 @@ Where each kind of secret lives:
 |------------------------|-------------------------------|------------------------------------------------|
 | API tokens / env vars  | macOS **login Keychain**      | `~/.config/zsh/secrets.zsh` at shell start     |
 | SSH private keys        | `~/.ssh/` (mode 0600)         | ssh-agent + Keychain (`UseKeychain`)           |
-| GPG / signing key       | GnuPG keyring / YubiKey       | imported out-of-band; git uses it for signing  |
+| Commit signing          | your SSH key (above)          | git signs with `gpg.format = ssh` when present |
 
 ## Tokens & environment values (Keychain)
 
@@ -45,18 +45,29 @@ agent + Keychain. On a new machine, create or import the key, then add it:
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519_personal
     # upload the matching ~/.ssh/id_ed25519_personal.pub to GitHub, etc.
 
-## GPG / commit signing
+## Commit signing (SSH)
 
-Import your private key from backup or a YubiKey (never store it here):
+Commits are signed with your **SSH key** — no GPG involved. The git template
+only writes the signing config when `~/.ssh/id_ed25519_personal.pub` exists, so
+a bare machine still commits fine (just unsigned) until you create the key.
 
-    gpg --import /path/to/backup/private-key.asc   # or plug in the YubiKey
+To turn signing on:
 
-The non-secret signing config (which key id, sign by default) can live in the
-tracked gitconfig; only the key material is provisioned out-of-band.
+    # 1. create the key (see "SSH keys" above) if you haven't
+    # 2. re-apply — signing config activates now that the key exists
+    chezmoi apply
+    # 3. upload the PUBLIC key to GitHub as a *Signing* key
+    #    (Settings > SSH and GPG keys > New SSH key > type: Signing)
+
+Optional — enable local verification (`git log --show-signature`):
+
+    printf '%s namespaces="git" %s\n' "$(git config user.email)" \
+      "$(cat ~/.ssh/id_ed25519_personal.pub)" > ~/.config/git/allowed_signers
 
 ## New-machine bootstrap, end to end
 
 1. Install Homebrew, then `brew bundle --file=homebrew/Brewfile`.
 2. `chezmoi init --apply <this-repo>`  → all config applies, no secrets needed.
-3. Add secrets as needed: Keychain tokens (above), SSH key(s), GPG import.
+3. Add secrets as needed: Keychain tokens (above) and SSH key(s).
+   Re-run `chezmoi apply` after creating the SSH key to turn on signing.
 4. Open a fresh shell so Keychain-backed env vars load.

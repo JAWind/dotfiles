@@ -26,10 +26,6 @@ brew "watch"                   # Run a command periodically, fullscreen
 brew "zsh-autosuggestions"     # Fish-like autosuggestions
 brew "zsh-syntax-highlighting" # Fish-like syntax highlighting
 
-## Security & secrets ###############################################
-brew "gnupg"                   # GNU Privacy Guard (PGP)
-brew "pass"                    # Password manager on GPG + git
-
 ## Dev workflow #####################################################
 brew "direnv"                  # Per-directory environment loader
 brew "awscli"                  # Amazon AWS command-line interface

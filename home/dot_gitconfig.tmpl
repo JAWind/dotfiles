@@ -5,6 +5,10 @@
 {{- else }}
     email = {{ .email }}
 {{- end }}
+{{- $sshSigningKey := joinPath .chezmoi.homeDir ".ssh/id_ed25519_personal.pub" }}
+{{- if stat $sshSigningKey }}
+    signingkey = {{ $sshSigningKey }}
+{{- end }}
 
 [init]
     defaultBranch = main
@@ -18,3 +22,18 @@
 
 [color]
     ui = auto
+{{- if stat $sshSigningKey }}
+
+# Commit signing via SSH (activates automatically once the key above exists)
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = {{ joinPath .chezmoi.homeDir ".config/git/allowed_signers" }}
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
+{{- end }}
