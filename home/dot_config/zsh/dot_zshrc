@@ -1,0 +1,23 @@
+# ~/.config/zsh/.zshrc
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Starship prompt
+eval "$(starship init zsh)"
+
+# zoxide (smarter cd)
+eval "$(zoxide init zsh)"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# mise (runtime version manager)
+eval "$(mise activate zsh)"
+
+# Aliases
+alias ls="eza"
+alias cat="bat"
+alias find="fd"
+alias grep="rg"
+

@@ -1,0 +1,14 @@
+# Repo-level ignores for the chezmoi source (not applied to $HOME)
+
+# macOS
+.DS_Store
+._*
+
+# scratch / probe artifacts
+.write_test
+_git_probe/
+_to_delete/
+
+# editor
+*.swp
+*.swo
