@@ -17,7 +17,7 @@ This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
 - **Python** — uv for interpreters, virtualenvs, packages, and tools; Ruff +
   pylsp in the editor. → [docs/PYTHON.md](docs/PYTHON.md)
 - **Git** — templated identity, a global ignore file, and optional SSH commit
-  signing that activates once a signing key exists.
+  signing that activates once a signing key exists. → [docs/GIT.md](docs/GIT.md)
 - **Secrets** — none in the repo; read from the macOS Keychain at runtime.
   → [docs/SECRETS.md](docs/SECRETS.md)
 
@@ -30,6 +30,7 @@ This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
 | [NEOVIM.md](docs/NEOVIM.md) | Editor: layout, options, keybindings, plugins, LSP |
 | [TMUX.md](docs/TMUX.md) | Terminal multiplexer: prefix, keybindings, sessions |
 | [PYTHON.md](docs/PYTHON.md) | uv workflow (versions, projects, tools) + Ruff/pylsp |
+| [GIT.md](docs/GIT.md) | git config, global ignore, signing, machine-local overrides |
 | [SECRETS.md](docs/SECRETS.md) | Keychain secrets, SSH keys, and commit signing |
 
 ## Quick start
