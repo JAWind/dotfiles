@@ -17,9 +17,9 @@ Where each kind of secret lives:
 
 Store on this machine, then reference it. Storing:
 
-    chezmoi secret keyring set --service=homebrew-github-api --user=jeremy
+    chezmoi secret keyring set --service=homebrew-github-api --user="$USER"
     # native equivalent:
-    # security add-generic-password -U -s homebrew-github-api -a jeremy -w
+    # security add-generic-password -U -s homebrew-github-api -a "$USER" -w
 
 Referencing — add/uncomment a line in `~/.config/zsh/secrets.zsh`:
 
@@ -41,7 +41,7 @@ Keys are never in the repo (`.chezmoiignore` excludes `id_*`, `*.pub`,
 `known_hosts`). `~/.ssh/config` is managed and already wires keys into the
 agent + Keychain. On a new machine, create or import the key, then add it:
 
-    ssh-keygen -t ed25519 -C "jeremy.wind@icloud.com" -f ~/.ssh/id_ed25519_personal
+    ssh-keygen -t ed25519 -C "$(git config user.email)" -f ~/.ssh/id_ed25519_personal
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519_personal
     # upload the matching ~/.ssh/id_ed25519_personal.pub to GitHub, etc.
 
