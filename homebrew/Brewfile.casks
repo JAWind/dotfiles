@@ -20,6 +20,9 @@ cask "devutils"                # Developer toolbox
 cask "docker-desktop"          # Containers (requires admin)
 cask "claude-code"             # Terminal-based AI coding assistant
 
+## Shells (cask; pkg installer — needs admin) #####################
+cask "powershell"              # PowerShell (pwsh)
+
 ## VS Code extensions (need VS Code above; no admin) ################
 vscode "catppuccin.catppuccin-vsc"
 vscode "catppuccin.catppuccin-vsc-icons"
