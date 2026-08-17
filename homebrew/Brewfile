@@ -37,6 +37,7 @@ brew "zsh-syntax-highlighting" # Fish-like syntax highlighting
 ## Dev workflow #####################################################
 brew "awscli"                  # Amazon AWS command-line interface
 brew "uv"                      # Fast Python package & version manager
+brew "powershell"              # PowerShell (pwsh) shell & scripting
 
 ## Infrastructure ##################################################
 brew "hashicorp/tap/terraform" # Infrastructure as code
