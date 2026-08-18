@@ -54,8 +54,9 @@ Reattach a detached session later with `tmux attach` (or `tmux a`).
 
 ## Status bar
 
-A minimal bar with a transparent background: the **session name** (bold) on the
-left, and the **time** (`HH:MM`) on the right.
+Themed with **Catppuccin Mocha** — the **session name** on the left (mauve
+accent), the **time** (`HH:MM`) on the right, plus matching pane borders,
+copy-mode, and message colors. See [THEMING.md](THEMING.md).
 
 ## Sessions
 

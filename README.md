@@ -22,7 +22,8 @@ This README is a map. Detailed, per-topic guides live in [`docs/`](docs).
   signing that activates once a signing key exists. → [docs/GIT.md](docs/GIT.md)
 - **Secrets** — none in the repo; read from the macOS Keychain at runtime.
   → [docs/SECRETS.md](docs/SECRETS.md)
-- **Theme** — Catppuccin Mocha across Starship, Neovim, bat, eza, and fzf.
+- **Theme** — Catppuccin Mocha across the whole toolchain (Starship, Neovim,
+  bat, eza, fzf, zsh-syntax-highlighting, tmux, VS Code, iTerm2).
   → [docs/THEMING.md](docs/THEMING.md)
 
 ## Documentation
@@ -49,7 +50,9 @@ On a new Mac (full walkthrough, including non-admin machines, in
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # 2. chezmoi + dotfiles (prompts for name/email)
 brew install chezmoi && chezmoi init --apply <your-repo-url>
-# 3. core packages  (GUI apps: also run Brewfile.casks)
+# 3. trust the two third-party taps, then install core packages
+#    (GUI apps are optional: also run Brewfile.casks)
+brew trust hashicorp/tap && brew trust terraform-linters/tap
 brew bundle --file="$HOME/.local/share/chezmoi/homebrew/Brewfile"
 ```
 
@@ -65,13 +68,16 @@ home/                        -> $HOME
   dot_editorconfig           -> ~/.editorconfig
   dot_gitconfig.tmpl         -> ~/.gitconfig        (identity + optional signing)
   dot_config/
-    zsh/dot_zshrc            -> ~/.config/zsh/.zshrc
-    zsh/private_secrets.zsh  -> ~/.config/zsh/secrets.zsh  (Keychain loader, 0600)
+    zsh/                    -> ~/.config/zsh/  (.zshrc, secrets.zsh 0600, catppuccin highlight)
     git/ignore              -> ~/.config/git/ignore
+    bat/                    -> ~/.config/bat/  (config + Catppuccin theme)
+    eza/theme.yml           -> ~/.config/eza/theme.yml  (Catppuccin)
     nvim/                   -> ~/.config/nvim
     tmux/tmux.conf          -> ~/.config/tmux/tmux.conf
     starship.toml           -> ~/.config/starship.toml
-  private_dot_ssh/          -> ~/.ssh               (config only; keys ignored)
+  private_dot_ssh/          -> ~/.ssh          (config only; keys ignored)
+  Library/…                 -> VS Code settings.json + iTerm2 Catppuccin profile
+  run_onchange_…            builds bat's theme cache when the theme changes
 homebrew/Brewfile              core formulae (no admin)
 homebrew/Brewfile.casks        GUI apps + VS Code extensions (may need admin)
 docs/                          per-topic guides (see Documentation above)
@@ -87,7 +93,7 @@ a templated file.
 ```sh
 chezmoi diff                 # preview pending changes before applying
 chezmoi apply -v             # apply the source to $HOME
-chezmoi edit ~/.zshrc        # edit a managed file through the source
+chezmoi edit ~/.config/zsh/.zshrc   # edit a managed file through the source
 chezmoi cd                   # open a shell in the source repo (a git repo)
 ```
 

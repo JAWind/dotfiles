@@ -39,6 +39,8 @@ The leader key is **Space**. Notable options set in `options.lua`:
 - System clipboard integration (`unnamedplus`) — yank/paste shares with macOS.
 - `scrolloff=8` (keep context around the cursor); splits open right/below.
 - 24-bit color (`termguicolors`).
+- Unused language providers (Perl/Ruby/Node/Python) and luarocks support are
+  disabled — nothing here needs them, and it keeps `:checkhealth` quiet.
 
 ## Keybindings
 
