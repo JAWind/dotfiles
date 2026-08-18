@@ -43,6 +43,8 @@ macOS Keychain (empty and harmless until you add any). See
 |---------|---------------------------------------------|----------------------------------|
 | `ls`    | `eza --group-directories-first`             | modern `ls` with icons/colors    |
 | `ll`    | `eza -lah --group-directories-first --git`  | long listing, hidden files, git  |
+| `la`    | `eza -a --group-directories-first`          | all entries (incl. hidden)       |
+| `lt`    | `eza --tree --level=2 --group-directories-first` | 2-level tree view          |
 | `cat`   | `bat`                                       | syntax-highlighted `cat`         |
 | `find`  | `fd`                                        | fast, friendly `find`            |
 | `grep`  | `rg`                                        | ripgrep                          |
@@ -56,7 +58,10 @@ Aliases only affect the interactive shell — scripts still get the real `cat`,
 - **zoxide** — `z <part-of-path>` jumps to a directory you visit often; `zi`
   picks from matches interactively.
 - **fzf** — `Ctrl-r` fuzzy-searches command history, `Ctrl-t` inserts a file
-  path, and `Alt-c` cd's into a subdirectory.
+  path, and `Alt-c` cd's into a subdirectory. File/dir searches use `fd`, so
+  they respect `.gitignore` and include hidden files.
+- **man pages** — rendered through `bat`, so they're syntax-colored in the
+  Catppuccin theme.
 
 ## The prompt (Starship)
 
