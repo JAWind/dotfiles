@@ -16,8 +16,6 @@ cask "iterm2"                  # Terminal emulator
 cask "visual-studio-code"      # Code editor
 cask "google-chrome"           # Web browser
 cask "raycast"                 # Launcher / productivity
-cask "devutils"                # Developer toolbox
-cask "docker-desktop"          # Containers (requires admin)
 cask "claude-code"             # Terminal-based AI coding assistant
 
 ## VS Code extensions (need VS Code above; no admin) ################

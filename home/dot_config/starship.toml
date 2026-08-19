@@ -3,7 +3,6 @@
 format = """
 [](red)\
 $os\
-$username\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
@@ -14,20 +13,19 @@ $c\
 $rust\
 $golang\
 $nodejs\
-$bun\
-$php\
-$java\
-$kotlin\
-$haskell\
 $python\
 [](fg:green bg:sapphire)\
-$conda\
 [](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
-$cmd_duration\
+[](fg:lavender)\
 $line_break\
 \n$character"""
+
+right_format = """
+$cmd_duration\
+[](fg:lavender)\
+$time\
+[](fg:lavender)\
+"""
 
 add_newline = true
 
@@ -167,8 +165,7 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-show_milliseconds = true
-format = " in $duration "
+show_milliseconds = false
 style = "bg:lavender"
 disabled = false
 show_notifications = true
